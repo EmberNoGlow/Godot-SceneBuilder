@@ -1,0 +1,118 @@
+[gd_scene load_steps=11 format=3 uid="uid://c35eqssiryomj"]
+
+[ext_resource type="Script" uid="uid://bqds4i1a3dg27" path="res://addons/scenebuilder/Scripts/SceneBuild.gd" id="1_e45ip"]
+[ext_resource type="Material" uid="uid://5yvfm2qmgjqd" path="res://addons/scenebuilder/demo/assets/Stone.material" id="2_h0ej0"]
+[ext_resource type="Material" uid="uid://c3synjy0pk3hn" path="res://addons/scenebuilder/demo/assets/GridFloor.material" id="3_hgvkb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_top_color = Color(0.050708726, 0.14733289, 0.2347951, 1)
+sky_horizon_color = Color(0.49411765, 0.40784314, 0.56078434, 1)
+sky_curve = 0.2049061
+ground_bottom_color = Color(0.08127577, 0.06435475, 0.0453109, 1)
+ground_horizon_color = Color(0.49411765, 0.40784314, 0.56078434, 1)
+ground_curve = 0.0103526
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.1
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="TextMesh" id="TextMesh_ig7tw"]
+text = "A"
+pixel_size = 0.063
+depth = 0.105
+
+[sub_resource type="TextMesh" id="TextMesh_0xm2m"]
+text = "i"
+pixel_size = 0.063
+depth = 0.105
+
+[sub_resource type="TextMesh" id="TextMesh_h2yge"]
+text = "Y
+"
+pixel_size = 0.063
+depth = 0.105
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(1, 0.2, 0.2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.86602527, -0.43301293, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Build" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09304559, 0)
+script = ExtResource("1_e45ip")
+CustomFunctionName = &"create_grid_points"
+InstanceAmount = 16
+DistanceFromCenter = 1.96
+InstanceRotation = Vector3(90, 90, 0)
+SourceMesh = SubResource("TextMesh_ig7tw")
+SpiralHeight = 6.0
+SpiralTurns = 4.29
+CustomArgs = "2,2,7"
+material = ExtResource("2_h0ej0")
+metadata/_custom_type_script = "uid://bqds4i1a3dg27"
+
+[node name="Build2" type="Node3D" parent="."]
+script = ExtResource("1_e45ip")
+CustomFunctionName = &"create_grid_points"
+InstanceAmount = 16
+DistanceFromCenter = 1.19
+InstanceRotation = Vector3(90, 90, 0)
+SourceMesh = SubResource("TextMesh_0xm2m")
+SpiralHeight = 6.0
+SpiralTurns = 4.29
+CustomArgs = "2,2,7"
+material = ExtResource("2_h0ej0")
+metadata/_custom_type_script = "uid://bqds4i1a3dg27"
+
+[node name="Build3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61688256, 0)
+script = ExtResource("1_e45ip")
+FunctionName = "Grid"
+InstanceAmount = 16
+DistanceFromCenter = 1.985
+InstanceRotation = Vector3(-180, 90, 0)
+SourceMesh = SubResource("TextMesh_h2yge")
+DontPassSpiralArgs = true
+SpiralHeight = 6.0
+SpiralTurns = 4.29
+CustomArgs = "1,3,7"
+material = ExtResource("3_hgvkb")
+metadata/_custom_type_script = "uid://bqds4i1a3dg27"
+
+[node name="Build4" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.677896, -0.08481979, 0)
+script = ExtResource("1_e45ip")
+CustomFunctionName = &"create_grid_points"
+InstanceAmount = 56
+DistanceFromCenter = 1.19
+SourceMesh = SubResource("BoxMesh_h2yge")
+Spiral = true
+SpiralHeight = 3.5
+SpiralTurns = 1.27
+CustomArgs = "2,2,7"
+material = ExtResource("3_hgvkb")
+metadata/_custom_type_script = "uid://bqds4i1a3dg27"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4832582, -0.1586926, 0)
+size = Vector3(7.1665163, 0.1, 4.2)
+material = ExtResource("3_hgvkb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.752725, 0.658335, 0, -0.658335, 0.752725, 0, 3.2841, 2.74132)
