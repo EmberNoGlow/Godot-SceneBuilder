@@ -23,7 +23,7 @@ SceneBuilder allows you to procedurally scatter meshes in various patterns (Circ
 
 ## 📦 Installation
 
-1.  Download the repository.
+1.  Download the repository or get from **[Asset Library](https://godotengine.org/asset-library/asset/4607)**.
 2.  Copy the `addons/scenebuilder` folder into your project's `res://` directory.
 3.  Go to **Project > Project Settings > Plugins**.
 4.  Enable **SceneBuilder**.
